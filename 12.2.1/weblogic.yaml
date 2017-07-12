@@ -21,7 +21,10 @@ items:
         kind: ImageStreamTag
         name: rhel7-weblogic:v12.2.1
     source:
-      file: Dockerfile
+      type: Git
+      git:
+        uri: https://github.com/rbaumgar/OracleWebLogic.git
+      contextDir: 12.2.1
     strategy:
       dockerStrategy:
         from:
