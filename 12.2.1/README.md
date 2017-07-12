@@ -21,8 +21,10 @@ Check log of the build
 If this is successful, you can create an application (with an empty domain), by
     
     oc new-app --name=mywls --image-stream=rhel7-weblogic:v12.2.1
-    oc expose svc mywls
+    oc expose svc mywls --port=7001 -e ADMIN_PASSWORD=welcome1
     
 With following command you will find the URL (under HOST/PORT)
 
     oc get route mywls
+
+Open the URL with /console ... Done!
