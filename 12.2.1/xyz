@@ -6,27 +6,27 @@ items:
   apiVersion: v1
   metadata:
     labels:
-      app: rhel7-WebLogic
-    name: rhel7-WebLogic
+      app: rhel7-weblogic
+    name: rhel7-weblogic
   spec: {}
 - kind: BuildConfig
   apiVersion: v1
   metadata:
     labels:
-      app: rhel7-WebLogic
-    name: rhel7-WebLogic
+      app: rhel7-weblogic
+    name: rhel7-weblogic
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: rhel7-WebLogic:latest
+        name: rhel7-weblogic:v12.2.1
     source:
       file: Dockerfile
     strategy:
       dockerStrategy:
         from:
           kind: ImageStreamTag
-          name: rhel7-OracleJDK:latest
+          name: rhel7-oraclejdk:latest
       type: Docker
     triggers:
     - type: ConfigChange
