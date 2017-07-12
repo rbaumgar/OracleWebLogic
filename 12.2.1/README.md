@@ -35,4 +35,5 @@ When you are finished, you can remove the WebLogic Server with
     oc delete dc,svc,route mywls
     
 Delete the image with
+
     oc delete is rhel7-weblogic
