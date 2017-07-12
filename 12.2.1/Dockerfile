@@ -63,8 +63,7 @@ RUN chmod a+xr /u01 && \
     chown oracle:oracle -R /u01 && \
     echo oracle:oracle | chpasswd && \
     cd /u01 && $JAVA_HOME/bin/jar xf /u01/$FMW_PKG && cd - && \
-    su -c "$JAVA_HOME/bin/java -jar /u01/$FMW_JAR -silent -responseFile /u01/install.file -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME -ignoreSysPrereqs -force -novalidation ORACLE_HOME=$O
-RACLE_HOME INSTALL_TYPE=\"WebLogic Server\"" - oracle && \
+    su -c "$JAVA_HOME/bin/java -jar /u01/$FMW_JAR -silent -responseFile /u01/install.file -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME -ignoreSysPrereqs -force -novalidation ORACLE_HOME=$ORACLE_HOME INSTALL_TYPE=\"WebLogic Server\"" - oracle && \
     rm /u01/$FMW_JAR /u01/$FMW_PKG /u01/oraInst.loc /u01/install.file && \
     find /u01 -user oracle -exec chmod a+rwX /u01 {} ';'
 
