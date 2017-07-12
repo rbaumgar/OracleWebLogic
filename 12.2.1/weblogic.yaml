@@ -29,7 +29,7 @@ items:
       dockerStrategy:
         from:
           kind: ImageStreamTag
-          name: rhel7-oraclejdk:latest
+          name: rhel7-oraclejdk:v1.8.0
       type: Docker
     triggers:
     - type: ConfigChange
