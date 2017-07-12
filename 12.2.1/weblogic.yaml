@@ -27,6 +27,13 @@ items:
       contextDir: 12.2.1
     strategy:
       dockerStrategy:
+        env:
+        - name: FMW_BASEURL
+          value: http://caddy-abc.192.168.122.111.xip.io
+        - name: FMW_VERSION
+          value: 12.2.1.2.0
+        - name: FMW_QUICK
+          value: "True"
         from:
           kind: ImageStreamTag
           name: rhel7-oraclejdk:v1.8.0
