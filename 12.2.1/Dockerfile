@@ -49,7 +49,7 @@ ENV FMW_PKG=fmw_${FMW_VERSION}_wls${FMW_QUICK:+_quick}_Disk1_1of1.zip \
 
 # Copy packages
 # -------------
-ADD ${FMW_BASEURL}${FMW_PKG} /u01/
+COPY ${FMW_BASEURL}/${FMW_PKG} /u01/
 COPY install.file oraInst.loc /u01/
 COPY container-scripts/createAndStartEmptyDomain.sh container-scripts/create-wls-domain.py /u01/oracle/
 
