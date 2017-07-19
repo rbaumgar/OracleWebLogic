@@ -16,3 +16,4 @@ ENV APP_NAME="sample" \
 COPY container-scripts/* /u01/oracle/
 
 # RUN wlst.sh /u01/oracle/app-deploy.py
+

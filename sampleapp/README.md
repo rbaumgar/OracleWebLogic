@@ -1,21 +1,34 @@
-Example of Image with WLS Domain
-================================
-This Dockerfile extends the Oracle WebLogic image built under 12.2.1
+# Oracle WebLogic Server with a sample application on OpenShift
 
-It will deploy during Docker image build phase, using a WLST Offline script, any package defined in APP_FILE located in APP_DIR into the DOMAIN_HOME with name defined in APP_NAME 
+Prerequsits:
+- create the rhel7-weblogic image as described in the 12.2.1 directory
 
-# How to build and run
-First make sure you have built sample image inside **rhel7-weblogic**. Now to build this sample, run:
+Create sampleapp image
 
-        $ docker build -t 1221-appdeploy .
+    oc create -f https://raw.githubusercontent.com/rbaumgar/OracleWebLogic/master/sampleapp/sampleapp.yaml
+    oc start-build sampleapp
 
-To start the containerized Admin Server, run:
 
-        $ docker run -d --name wlsadmin --hostname wlsadmin -p 7001:7001 1221-appdeploy
+Check log of the build
+    
+    oc log sampleapp-2-build -f
+    
+If this is successful, you can create an application (with an empty domain), by
+    
+    oc new-app --name=mysample --image-stream=sampleapp
+    oc expose svc mysample --port=7001 -e ADMIN_PASSWORD=welcome1 -e DOMAIN_NAME=demo
+    
+With following command you will find the URL (under HOST/PORT)
 
-To start a containerized Managed Server to self-register with the Admin Server above, run:
+    oc get route mysample
 
-        $ docker run -d --link wlsadmin:wlsadmin -p 7002:7002 1221-appdeploy createServer.sh
-        
-To access the sample application, go to **http://localhost:7001/sample**.
+Open the URL with /sample ... Done!
 
+
+When you are finished, you can remove the WebLogic Server with
+
+    oc delete dc,svc,route mysample
+    
+Delete the image with
+
+    oc delete is sampleapp
