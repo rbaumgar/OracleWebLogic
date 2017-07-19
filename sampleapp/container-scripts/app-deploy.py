@@ -11,11 +11,11 @@
 import os
 
 # Deployment Information 
-domainhome = os.environ.get('DOMAIN_HOME', '/u01/oracle/user_projects/domains/base_domain')
-admin_name = os.environ.get('ADMIN_NAME', 'AdminServer')
-app_name   = os.environ.get('APP_NAME', 'sample')
-app_file   = os.environ.get('APP_FILE', 'sample.war')
-app_dir    = os.environ.get('APP_DIR', '/u01/oracle')
+domain_name  = os.environ.get("DOMAIN_NAME", "base_domain")
+admin_name   = os.environ.get('ADMIN_NAME', 'AdminServer')
+app_name     = os.environ.get('APP_NAME', 'sample')
+app_file     = os.environ.get('APP_FILE', 'sample.war')
+app_dir      = os.environ.get('APP_DIR', '/u01/oracle')
 cluster_name = os.environ.get("CLUSTER_NAME", "DockerCluster")
 
 print('domain_name     : [%s]' % domain_name);

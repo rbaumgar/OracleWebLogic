@@ -11,7 +11,7 @@ Create sampleapp image
 
 Check log of the build
     
-    oc log sampleapp-2-build -f
+    oc logs sampleapp-1-build -f
     
 If this is successful, you can create an application (with an empty domain), by
     
