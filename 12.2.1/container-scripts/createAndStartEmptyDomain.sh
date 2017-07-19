@@ -24,6 +24,8 @@ trap _term SIGTERM
 # Set SIGKILL handler
 trap _kill SIGKILL
 
+export DOMAIN_HOME=/u01/oracle/user_projects/domains/$DOMAIN_NAME
+
 ADD_DOMAIN=1
 if [ ! -f ${DOMAIN_HOME}/servers/AdminServer/logs/AdminServer.log ]; then
     ADD_DOMAIN=0
@@ -57,11 +59,16 @@ sed -i -e "s|ADMIN_PASSWORD|$s|g" /u01/oracle/create-wls-domain.py
 # Create an empty domain
 wlst.sh -skipWLSModuleScanning /u01/oracle/create-wls-domain.py
 mkdir -p ${DOMAIN_HOME}/servers/AdminServer/security/ 
-echo "username=${ADMIN_USERNAME}" > /u01/oracle/user_projects/domains/$DOMAIN_NAME/servers/AdminServer/security/boot.properties 
-echo "password=$s" >> /u01/oracle/user_projects/domains/$DOMAIN_NAME/servers/AdminServer/security/boot.properties 
+echo "username=${ADMIN_USERNAME}" > $DOMAIN_HOME/servers/AdminServer/security/boot.properties 
+echo "password=$s" >> $DOMAIN_HOME/servers/AdminServer/security/boot.properties 
 ${DOMAIN_HOME}/bin/setDomainEnv.sh 
 fi
 
+# Deploy an application
+if [ -f /u01/oracle/app-deploy.py ]; then
+    echo "Deploy an application"
+    wlst.sh -skipWLSModuleScanning /u01/oracle/app-deploy.py
+fi
 
 # Start Admin Server and tail the logs
 ${DOMAIN_HOME}/startWebLogic.sh

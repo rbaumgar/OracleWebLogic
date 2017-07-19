@@ -5,7 +5,7 @@
 # For generic build: fmw_12.2.1.x.x_wls_Disk1_1of1.zip 
 # Or for developer build: fmw_12.2.1.x.x_wls_quick_Disk1_1of1.zip 
 #
-# Download WebLogic Server Infrastructure  Installer 12.2.1.2
+# Download WebLogic Server Infrastructure  Installer 12.2.1.2.0
 # # - http://www.oracle.com/technetwork/middleware/weblogic/downloads/wls-for-dev-1703574.html 
 #
 # The zip archive used must be available at a URL specified in FMW_BASEURL.
@@ -69,8 +69,9 @@ RUN chmod a+xr /u01 && \
 
 # Expose Node Manager default port, and also default for admin and managed server 
 # oc new-app does not like variables used in ports.
-#EXPOSE $NM_PORT $ADMIN_PORT $MS_PORT $DEBUG_PORT
-EXPOSE 5556 8001 7001 8453
+# EXPOSE $NM_PORT $ADMIN_PORT $MS_PORT $DEBUG_PORT
+# EXPOSE 5556 8001 7001 8453
+EXPOSE 7001 8001
 
 WORKDIR ${ORACLE_HOME}
 
