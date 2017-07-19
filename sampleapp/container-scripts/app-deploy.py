@@ -30,7 +30,7 @@ print('cluster_name    : [%s]' % cluster_name);
 
 # Read Domain in Offline Mode
 # ===========================
-readDomain(domainhome)
+readDomain(domain_home)
 
 # Create Application
 # ==================
