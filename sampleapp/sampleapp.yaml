@@ -1,0 +1,44 @@
+kind: List
+apiVersion: v1
+items:
+
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    labels:
+      app: sampleapp
+    name: sampleapp
+  spec: {}
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    labels:
+      app: sampleapp
+    name: sampleapp
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: sampleapp
+    source:
+      type: Git
+      git:
+        uri: https://github.com/rbaumgar/OracleWebLogic.git
+      contextDir: sampleapp
+    strategy:
+      dockerStrategy:
+        env:
+        - name: APP_NAME
+          value: sample
+        - name: APP_FILE
+          value: sample.war
+        - name: APP_DIR
+          value: /u01/oracle
+        from:
+          kind: ImageStreamTag
+          name: rhel7-weblogic:v12.2.1
+      type: Docker
+    triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChange: {}
