@@ -19,7 +19,7 @@ items:
     output:
       to:
         kind: ImageStreamTag
-        name: sampleapp
+        name: sampleapp:v1
     source:
       type: Git
       git:
