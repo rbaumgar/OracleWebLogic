@@ -35,14 +35,14 @@ readDomain(domain_home)
 # Create Application
 # ==================
 cd('/')
-app = create(appname, 'AppDeployment')
-app.setSourcePath(appdir + '/' + apppkg)
+app = create(app_name, 'AppDeployment')
+app.setSourcePath(app_dir + '/' + app_file)
 app.setStagingMode('nostage')
  
 # Assign application to AdminServer
 # =================================
-assign('AppDeployment', appname, 'Target', admin_name)
-# assign('AppDeployment', appname, 'Target', cluster_name)
+assign('AppDeployment', app_name, 'Target', admin_name)
+# assign('AppDeployment', app_name, 'Target', cluster_name)
 
 # Update Domain, Close It, Exit
 # ==========================
