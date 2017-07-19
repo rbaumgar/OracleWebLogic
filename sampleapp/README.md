@@ -15,8 +15,8 @@ Check log of the build
     
 If this is successful, you can create an application (with an empty domain), by
     
-    oc new-app --name=mysample --image-stream=sampleapp:v1
-    oc expose svc mysample --port=7001 -e ADMIN_PASSWORD=welcome1 -e DOMAIN_NAME=demo
+    oc new-app --name=mysample --image-stream=sampleapp:v1 -e ADMIN_PASSWORD=welcome1 -e DOMAIN_NAME=demo
+    oc expose svc mysample --port=7001
     
 With following command you will find the URL (under HOST/PORT)
 

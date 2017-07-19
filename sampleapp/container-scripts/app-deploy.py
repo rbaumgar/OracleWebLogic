@@ -18,6 +18,7 @@ app_file     = os.environ.get('APP_FILE', 'sample.war')
 app_dir      = os.environ.get('APP_DIR', '/u01/oracle')
 cluster_name = os.environ.get("CLUSTER_NAME", "DockerCluster")
 
+print('Deploy an application');
 print('domain_name     : [%s]' % domain_name);
 print('admin_name      : [%s]' % admin_name);
 print('app_name        : [%s]' % app_name);
