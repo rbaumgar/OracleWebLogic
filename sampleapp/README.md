@@ -17,6 +17,7 @@ If this is successful, you can create an application (with an empty domain), by
     
     oc new-app --name=mysample --image-stream=sampleapp:v1 -e ADMIN_PASSWORD=welcome1 -e DOMAIN_NAME=demo
     oc expose svc mysample --port=7001
+    oc set probe dc/mysample --readiness --liveness --get-url=http://:7001/sample --initial-delay-seconds=30
     
 With following command you will find the URL (under HOST/PORT)
 
@@ -24,6 +25,11 @@ With following command you will find the URL (under HOST/PORT)
 
 Open the URL with /sample ... Done!
 
+Now you can scale your application very easyly
+
+    oc scale --replicas=2 dc mysample
+
+You will get multiple admin servers with your application deployed and an automatic load balancer (haproxy).
 
 When you are finished, you can remove the WebLogic Server with
 
